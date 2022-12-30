@@ -1,0 +1,23 @@
+node{
+    def mavenHome = tool name = "maven3.8.6"
+ stage('1cloneCode'){
+    git "https://github.com/Glasstowers/maven-web-application"
+    //sh "git clone https://github.com/Glasstowers/maven-web-application"
+    //bat "git clone https://github.com/Glasstowers/maven-web-application" 
+ } 
+ stage('2Test&Build'){sh "${mavenHome}/bin/mvn install"}
+ /*
+ stage('3CodeQuality'){sh "${mavenHome}/bin/mvn sonar:sonar"}  
+ stage('4UploadArtifacts'){sh "${mavenHome}/bin/mvn deploy"} 
+ stage('5deploy_uat'){
+     //sh "scp" deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.96.165.153:8080')], contextPath: null, war: 'target/*war'}
+     deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.96.165.153:8080')], contextPath: null, war: 'target/*war'}
+ stage('6approval'){timeout(time:9, unit:'HOURS') {
+        input message: 'Application ready for deployment, Please review and approve'}}
+ stage('7deploy_prod'){deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://3.96.165.153:8080')], contextPath: null, war: 'target/*war'}
+ stage('8Notification'){//pipeline Syntax 
+ emailext body: '''build status for frontend
+
+regards aciek''', recipientProviders: [buildUser(), developers(), contributor()], subject: 'build status', to: 'nwosueche@yahoo.com'}
+*/
+} 
