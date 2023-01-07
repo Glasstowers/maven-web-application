@@ -1,0 +1,7 @@
+node {
+    def mavenHome = tool name: 'maven3.8.7'  
+    stage("1-gitclone") { git 'https://github.com/Glasstowers/tesla-app'}
+   stage("2-build") { bat "${mavenHome}/bin/mvn install"} 
+  stage("3-codequality") { bat "${mavenHome}/bin/mvn sonar:sonar"} 
+   }
+   
